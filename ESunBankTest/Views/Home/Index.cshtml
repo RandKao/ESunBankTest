@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Data Page";
+}
+
+
+<div id="app">
+    <div class="row">
+        <div class="col-6">
+            當前資料庫資料比數 {{dataList.length}}
+        </div>
+        <div class="col-6 text-end">
+            <button class="btn btn-success" v-on:click="getDataFromAPI">從 GovData 抓取資料</button>
+            <button class="btn btn-primary" v-on:click="getDataFromDataBase">顯示資料</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th><small>日期（月別）</small></th>
+                        <th><small>轉存金融機構（金額）</small></th>
+                        <th><small>股票及受益憑證（金額）</small></th>
+                        <th><small>期貨（金額）</small></th>
+                        <th><small>公債_金融債券_公司債（金額）</small></th>
+                        <th><small>證券化商品（金額）</small></th>
+                        <th><small>短期票券（金額）</small></th>
+                        <th><small>國外投資-自行運用（金額）</small></th>
+                        <th><small>委託經營-國內（金額）</small></th>
+                        <th><small>委託經營-國外（金額）</small></th>
+                        <th><small>房屋及土地（金額）</small></th>
+                        <th><small>政府或公營事業貸款-經建貸款（金額）</small></th>
+                        <th><small>政府或公營事業貸款-農保借款（金額）</small></th>
+                        <th><small>被保險人貸款（金額）</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in dataList">
+                        <td>{{item.Date | momentDate}}</td>
+                        <td>{{item.TransToFinancial | currency}}</td>
+                        <td>{{item.StocksAndBenefit | currency}}</td>
+                        <td>{{item.Futures | currency}}</td>
+                        <td>{{item.Bonds | currency}}</td>
+                        <td>{{item.Securitized | currency}}</td>
+                        <td>{{item.ShortTerm | currency}}</td>
+                        <td>{{item.ForeignInvestment | currency}}</td>
+                        <td>{{item.EntrustedDomestic | currency}}</td>
+                        <td>{{item.EntrustedOverseas | currency}}</td>
+                        <td>{{item.RealEstate | currency}}</td>
+                        <td>{{item.GovLoansEconomic | currency}}</td>
+                        <td>{{item.GovLoansAgriculture | currency}}</td>
+                        <td>{{item.InsuredLoans | currency}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/index.js"></script>
+}
